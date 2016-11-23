@@ -1,6 +1,12 @@
 import pylab as lab
 
-date,close=lab.loadtxt('Nov21-1yr.csv',delimiter = ',',converters = {0:lab.strpdate2num('%M-%D-%Y')},skiprows =1,usecols=(0,4),unpack=True)
+
+def bytedate2num(fmt):
+    def converter(b):
+        return lab.strpdate2num(fmt)(b.decode('ascii'))
+    return converter
+
+date,close=lab.loadtxt('Nov21-1yr.csv',delimiter = ',',converters = {0:bytedate2num('%Y-%m-%d')},skiprows =1,usecols=(0,4),unpack=True)
 lab.plot(date,close)
 
 lab.show()

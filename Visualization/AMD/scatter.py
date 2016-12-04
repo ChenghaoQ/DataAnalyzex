@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
-from matplotlib.dates import bytespdates2num
-date,high,low=lab.loadtxt('Nov21-1yr.csv',delimiter = ',',converters ={0:bytespdates('%Y-%m-%d')},skiprows =1,usecols=(0,2,3),unpack=True)
+import numpy as np
+from matplotlib.dates import bytespdate2num
+date,high,low=np.loadtxt('Nov21-1yr.csv',delimiter = ',',converters ={0:bytespdate2num('%Y-%m-%d')},skiprows =1,usecols=(0,2,3),unpack=True)
 
 diff = high - low
 
-
-lab.scatter(date,diff)
-lab.show()
+plt.scatter(date,diff,alpha = 0.4)
+plt.show()
